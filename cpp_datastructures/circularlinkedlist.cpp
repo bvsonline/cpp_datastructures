@@ -28,6 +28,7 @@ struct CLLList * CreateCircularLinkedList(struct CLLList * cllList, int data);
 void printCircularLinkedList(struct CLLList * cllList);
 struct CLLList * addNewNode2CircularLinkedList(struct CLLList * cllList, int pos, int data);
 struct CLLList * DeleteFirstNodeinCLL(struct CLLList * cllList);
+struct CLLList * DeleteLastNodeinCLL(struct CLLList *cllList);
 
 FILE *f_cll;
 
@@ -38,13 +39,18 @@ void circularLinkedListImplementation()
     cllList.length = 0;
     cllListPtr = &cllList;
     
-    f_cll = fopen("circularLinkedList.txt","a");
+    f_cll = fopen("circularLinkedList.txt","w");
     
     //  Create circular linked list
+    fprintf(f_cll, "Create CLL with element 10 \n");
     cllListPtr = CreateCircularLinkedList(cllListPtr, 10);
+    printCircularLinkedList(cllListPtr);
     
+    fprintf(f_cll, "Delete First Node in CLL \n");
     cllListPtr = DeleteFirstNodeinCLL(cllListPtr);
+    printCircularLinkedList(cllListPtr);
     
+    fprintf(f_cll, "Create CLL with element 20/30/40/50/60/70/80 \n");
     cllListPtr = CreateCircularLinkedList(cllListPtr, 20);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 30);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 40);
@@ -52,18 +58,33 @@ void circularLinkedListImplementation()
     cllListPtr = CreateCircularLinkedList(cllListPtr, 60);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 70);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 80);
+    printCircularLinkedList(cllListPtr);
     
     //  add a node to circular linked list by position
     //  position = 0 head
     //  position = -1 end of list
     //  position > length of list, Do not add to list
+    fprintf(f_cll, "add NewNode to CLL at Pos 0 \n");
     addNewNode2CircularLinkedList(cllListPtr, 0, 100);
+    printCircularLinkedList(cllListPtr);
+    
+    fprintf(f_cll, "add NewNode to CLL at Pos -1 \n");
     addNewNode2CircularLinkedList(cllListPtr, -1, 90);
+    printCircularLinkedList(cllListPtr);
+    
+    fprintf(f_cll, "add NewNode to CLL at Pos 1 \n");
     addNewNode2CircularLinkedList(cllListPtr, 1, 200);
     addNewNode2CircularLinkedList(cllListPtr, 2, 210);
     addNewNode2CircularLinkedList(cllListPtr, 3, 220);
     addNewNode2CircularLinkedList(cllListPtr, 4, 230);
+    printCircularLinkedList(cllListPtr);
     
+    fprintf(f_cll, "Delete Last Node in CLL \n");
+    DeleteLastNodeinCLL(cllListPtr);
+    printCircularLinkedList(cllListPtr);
+    
+    fprintf(f_cll, "Delete First Node in CLL \n");
+    DeleteFirstNodeinCLL(cllListPtr);
     printCircularLinkedList(cllListPtr);
     
     fclose(f_cll);
@@ -114,7 +135,7 @@ void printCircularLinkedList(struct CLLList * cllList)
         fprintf(f_cll, "|||Node:0x%x(data:%d)(next:0x%x)|||===>",TempNode, TempNode->data, TempNode->next);
         TempNode = TempNode->next;
     }
-    fprintf(f_cll, "\n\n\n\n");
+    fprintf(f_cll, "\n\n");
 }
 
 struct CLLList * addNewNode2CircularLinkedList(struct CLLList * cllList, int pos, int data)
@@ -191,6 +212,7 @@ struct CLLList * DeleteFirstNodeinCLL(struct CLLList * cllList)
             free(cllHead);
             cllHead = NULL;
             cllList->cllHead = cllHead;
+            cllList->length--;
         }
         return cllList;
     }
@@ -206,6 +228,7 @@ struct CLLList * DeleteFirstNodeinCLL(struct CLLList * cllList)
         free(cllHead);
         cllHead = NULL;
         cllList->cllHead = newHead;
+        cllList->length--;
     }
     
     return cllList;
@@ -229,6 +252,7 @@ struct CLLList * DeleteLastNodeinCLL(struct CLLList *cllList)
     else
     {
         struct CLLNode * tempNode = cllHead, *tempNode2 = NULL;
+        
         while (tempNode->next != cllHead)
         {
             tempNode2 = tempNode;
