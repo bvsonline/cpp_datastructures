@@ -27,6 +27,7 @@ void circularLinkedListImplementation();
 struct CLLList * CreateCircularLinkedList(struct CLLList * cllList, int data);
 void printCircularLinkedList(struct CLLList * cllList);
 struct CLLList * addNewNode2CircularLinkedList(struct CLLList * cllList, int pos, int data);
+struct CLLList * DeleteFirstNodeinCLL(struct CLLList * cllList);
 
 FILE *f_cll;
 
@@ -41,6 +42,9 @@ void circularLinkedListImplementation()
     
     //  Create circular linked list
     cllListPtr = CreateCircularLinkedList(cllListPtr, 10);
+    
+    cllListPtr = DeleteFirstNodeinCLL(cllListPtr);
+    
     cllListPtr = CreateCircularLinkedList(cllListPtr, 20);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 30);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 40);
@@ -173,5 +177,68 @@ struct CLLList * addNewNode2CircularLinkedList(struct CLLList * cllList, int pos
         return cllList;
     }
   
+    return cllList;
+}
+
+struct CLLList * DeleteFirstNodeinCLL(struct CLLList * cllList)
+{
+    struct CLLNode * cllHead = cllList->cllHead, *tempNode;
+    
+    if ((cllHead == NULL) || (cllHead->next == cllHead))
+    {
+        if (cllHead)
+        {
+            free(cllHead);
+            cllHead = NULL;
+            cllList->cllHead = cllHead;
+        }
+        return cllList;
+    }
+    else
+    {
+        tempNode = cllHead;
+        struct CLLNode *newHead = tempNode->next;
+        while (tempNode->next != cllHead)
+        {
+            tempNode = tempNode->next;
+        }
+        tempNode->next = newHead;
+        free(cllHead);
+        cllHead = NULL;
+        cllList->cllHead = newHead;
+    }
+    
+    return cllList;
+}
+
+struct CLLList * DeleteLastNodeinCLL(struct CLLList *cllList)
+{
+    struct CLLNode * cllHead = cllList->cllHead;
+    
+    if ((cllHead == NULL) || (cllHead->next == cllHead))
+    {
+        if (cllHead)
+        {
+            free(cllHead);
+            cllHead = NULL;
+            cllList->cllHead = cllHead;
+            cllList->length--;
+        }
+        cllList->cllHead = NULL;
+    }
+    else
+    {
+        struct CLLNode * tempNode = cllHead, *tempNode2 = NULL;
+        while (tempNode->next != cllHead)
+        {
+            tempNode2 = tempNode;
+            tempNode = tempNode->next;
+        }
+        tempNode2->next = cllHead;
+        free(tempNode);
+        tempNode = NULL;
+        cllList->length--;
+    }
+    
     return cllList;
 }
