@@ -45,6 +45,7 @@ void circularLinkedListImplementation()
     cllListPtr = CreateCircularLinkedList(cllListPtr, 50);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 60);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 70);
+    cllListPtr = CreateCircularLinkedList(cllListPtr, 80);
     
     printCircularLinkedList(cllListPtr);
     
