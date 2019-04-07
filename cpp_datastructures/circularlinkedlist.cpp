@@ -26,6 +26,7 @@ struct CLLNode {
 void circularLinkedListImplementation();
 struct CLLList * CreateCircularLinkedList(struct CLLList * cllList, int data);
 void printCircularLinkedList(struct CLLList * cllList);
+struct CLLList * addNewNode2CircularLinkedList(struct CLLList * cllList, int pos, int data);
 
 FILE *f_cll;
 
@@ -38,6 +39,7 @@ void circularLinkedListImplementation()
     
     f_cll = fopen("circularLinkedList.txt","a");
     
+    //  Create circular linked list
     cllListPtr = CreateCircularLinkedList(cllListPtr, 10);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 20);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 30);
@@ -46,6 +48,17 @@ void circularLinkedListImplementation()
     cllListPtr = CreateCircularLinkedList(cllListPtr, 60);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 70);
     cllListPtr = CreateCircularLinkedList(cllListPtr, 80);
+    
+    //  add a node to circular linked list by position
+    //  position = 0 head
+    //  position = -1 end of list
+    //  position > length of list, Do not add to list
+    addNewNode2CircularLinkedList(cllListPtr, 0, 100);
+    addNewNode2CircularLinkedList(cllListPtr, -1, 90);
+    addNewNode2CircularLinkedList(cllListPtr, 1, 200);
+    addNewNode2CircularLinkedList(cllListPtr, 2, 210);
+    addNewNode2CircularLinkedList(cllListPtr, 3, 220);
+    addNewNode2CircularLinkedList(cllListPtr, 4, 230);
     
     printCircularLinkedList(cllListPtr);
     
@@ -100,4 +113,65 @@ void printCircularLinkedList(struct CLLList * cllList)
     fprintf(f_cll, "\n\n\n\n");
 }
 
+struct CLLList * addNewNode2CircularLinkedList(struct CLLList * cllList, int pos, int data)
+{
+    struct CLLNode * cllHead = cllList->cllHead, *tempNode;
 
+    struct CLLNode * NewNode = (struct CLLNode *) malloc (sizeof(struct CLLNode));
+    NewNode->data = data;
+    if (pos == 0)
+    {
+        if (cllHead == NULL)
+        {
+            NewNode->next = NewNode;
+        }
+        else
+        {
+            tempNode = cllHead;
+            NewNode->next = tempNode;
+            while (tempNode->next != cllHead)
+            {
+                tempNode = tempNode->next;
+            }
+            tempNode->next = NewNode;
+        }
+        cllList->cllHead = NewNode;
+        cllList->length++;
+        
+        return cllList;
+    }
+    else if (pos == -1)
+    {
+        tempNode = cllHead;
+        while (tempNode->next != cllHead)
+        {
+            tempNode = tempNode->next;
+        }
+        NewNode->next = cllHead;
+        tempNode->next = NewNode;
+        cllList->length++;
+        
+        return cllList;
+    }
+    else
+    {
+        tempNode = cllHead;
+        int k = 0;
+        while ((tempNode->next != cllHead) && (k < pos))
+        {
+            k++;
+            tempNode = tempNode->next;
+            if (k == pos)
+            {
+                NewNode->next = tempNode->next;
+                tempNode->next = NewNode;
+                cllList->length++;
+                break;
+            }
+        }
+        
+        return cllList;
+    }
+  
+    return cllList;
+}
