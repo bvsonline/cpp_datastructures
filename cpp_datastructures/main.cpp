@@ -11,6 +11,8 @@
 extern void LinkedListImplementation();
 extern void DoubleLinkedListImplementation();
 extern void circularLinkedListImplementation();
+extern void SwapDataImplementation();
+
 int main()
 {
     
@@ -19,6 +21,8 @@ int main()
     DoubleLinkedListImplementation();
     
     circularLinkedListImplementation();
+    
+    SwapDataImplementation();
     
     return 0;
 }

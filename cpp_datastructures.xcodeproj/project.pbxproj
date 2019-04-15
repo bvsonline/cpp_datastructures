@@ -11,6 +11,7 @@
 		446D1C7F225040DC0088C827 /* doublelinkedlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 446D1C7E225040DC0088C827 /* doublelinkedlist.cpp */; };
 		446D1C81225041590088C827 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 446D1C80225041590088C827 /* main.cpp */; };
 		446D1C8322570EFC0088C827 /* circularlinkedlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 446D1C8222570EFC0088C827 /* circularlinkedlist.cpp */; };
+		446D1C85226410630088C827 /* swapbyPtrs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 446D1C84226410630088C827 /* swapbyPtrs.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		446D1C7E225040DC0088C827 /* doublelinkedlist.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = doublelinkedlist.cpp; sourceTree = "<group>"; };
 		446D1C80225041590088C827 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		446D1C8222570EFC0088C827 /* circularlinkedlist.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = circularlinkedlist.cpp; sourceTree = "<group>"; };
+		446D1C84226410630088C827 /* swapbyPtrs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = swapbyPtrs.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				446D1C7E225040DC0088C827 /* doublelinkedlist.cpp */,
 				446D1C80225041590088C827 /* main.cpp */,
 				446D1C8222570EFC0088C827 /* circularlinkedlist.cpp */,
+				446D1C84226410630088C827 /* swapbyPtrs.cpp */,
 			);
 			path = cpp_datastructures;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				446D1C7D224B364F0088C827 /* linkedlist.cpp in Sources */,
+				446D1C85226410630088C827 /* swapbyPtrs.cpp in Sources */,
 				446D1C7F225040DC0088C827 /* doublelinkedlist.cpp in Sources */,
 				446D1C81225041590088C827 /* main.cpp in Sources */,
 				446D1C8322570EFC0088C827 /* circularlinkedlist.cpp in Sources */,
